@@ -1,0 +1,222 @@
+
+<style>
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--border-radius-md);margin-bottom:10px}
+  .badge-teal{background:var(--color-background-success);color:var(--color-text-success)}
+  .badge-purple{background:#EEEDFE;color:#3C3489}
+  .badge-amber{background:var(--color-background-warning);color:var(--color-text-warning)}
+  .badge-red{background:var(--color-background-error);color:var(--color-text-error)}
+  .badge-blue{background:var(--color-background-info);color:var(--color-text-info)}
+  @media(prefers-color-scheme:dark){.badge-purple{background:#26215C;color:#AFA9EC}}
+  .code-block{background:var(--color-background-tertiary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1rem 1.25rem;font-family:var(--font-mono);font-size:13px;line-height:1.8;margin:0.75rem 0;overflow-x:auto;white-space:pre}
+  .annotation{display:flex;gap:10px;align-items:flex-start;margin:7px 0;font-size:13px;color:var(--color-text-secondary)}
+  .ann-num{min-width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0}
+  h3{font-size:16px;font-weight:500;margin:0 0 0.5rem}
+  p{font-size:14px;line-height:1.7;color:var(--color-text-secondary);margin:0 0 0.75rem}
+  code{font-family:var(--font-mono);font-size:12px;background:var(--color-background-tertiary);padding:1px 5px;border-radius:4px}
+  .highlight{color:var(--color-text-primary);font-weight:500}
+  .tip-box{background:var(--color-background-success);border-left:3px solid var(--color-border-success);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-success)}
+  .warn-box{background:var(--color-background-warning);border-left:3px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-warning)}
+  .rule-box{background:var(--color-background-error);border-left:3px solid var(--color-border-error);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-error)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+  th{text-align:left;padding:7px 10px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;font-size:12px}
+  td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);font-size:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+  .cell{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem}
+  .cell-label{font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin-bottom:6px}
+</style>
+
+<div class="card">
+  <span class="badge badge-teal">Python Lesson 1 — Fast Track</span>
+  <h3>Python foundations — Java developer edition</h3>
+  <p>You already understand programming deeply. This lesson maps everything you know in Java to Python equivalents. We skip the beginner explanations and focus only on what's different.</p>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 1 — Variables and types</span>
+  <h3>No type declarations — Python infers everything</h3>
+  <div class="grid2">
+    <div class="cell">
+      <div class="cell-label">Java</div>
+      <div class="code-block" style="margin:0.5rem 0">int age = 17;
+double gpa = 9.2;
+String name = "Yubhi";
+boolean passed = true;</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Python</div>
+      <div class="code-block" style="margin:0.5rem 0">age = 17
+gpa = 9.2
+name = "Yubhi"
+passed = True  # capital T</div>
+    </div>
+  </div>
+  <div class="annotation"><div class="ann-num">1</div><div>Python booleans are <code>True</code> and <code>False</code> — capital first letter. Java uses <code>true</code> and <code>false</code> — all lowercase. Mix these up and you get a NameError.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>type(variable)</code> tells you the type at runtime: <code>type(age)</code> returns <code>&lt;class 'int'&gt;</code>. Python still has types — it just doesn't require you to declare them.</div></div>
+  <div class="tip-box">💡 Python has no <code>char</code> type. A single character is just a String of length 1: <code>c = 'a'</code> is the same as <code>c = "a"</code>. Both single and double quotes work.</div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 2 — Strings</span>
+  <h3>Strings are even more powerful in Python</h3>
+  <div class="code-block">name = "Yubhi Kashree"
+
+# All the same methods you know
+print(len(name))           # 13 — len() not .length()
+print(name.upper())        # YUBHI KASHREE
+print(name.lower())        # yubhi kashree
+print(name.strip())        # removes whitespace
+print(name[0])             # Y — indexing with []
+print(name[0:5])           # Yubhi — slicing
+print(name[-1])            # e — last character
+print("Yubhi" in name)     # True — contains check
+
+# f-strings — Python's cleaner alternative to concatenation
+age = 17
+print(f"My name is {name} and I am {age} years old.")
+# My name is Yubhi Kashree and I am 17 years old.
+
+# Multi-line string
+bio = """
+I am Yubhi.
+I study AI and Data Science.
+"""</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>len(name)</code> — Python uses a built-in function, not a method. No parentheses issue to remember.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>name[0:5]</code> — slicing. Extracts characters from index 0 up to but not including 5. Same exclusive upper bound rule you already know.</div></div>
+  <div class="annotation"><div class="ann-num">3</div><div><code>f"...{variable}..."</code> — f-strings are cleaner than Java's string concatenation. Put any expression inside <code>{}</code> and Python evaluates it.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 3 — Lists (Python's ArrayList)</span>
+  <h3>Lists replace both arrays and ArrayList</h3>
+  <div class="code-block">marks = [92, 88, 95, 78, 85]  # no type declaration needed
+
+# Accessing
+print(marks[0])        # 92
+print(marks[-1])       # 85 — last element
+print(marks[1:3])      # [88, 95] — slicing
+
+# Modifying
+marks.append(90)       # add to end — like ArrayList.add()
+marks.insert(0, 100)   # insert at index — like ArrayList.add(0, val)
+marks.remove(78)       # remove by value
+marks.pop()            # remove last element
+marks.pop(0)           # remove at index
+
+# Info
+print(len(marks))      # size — like ArrayList.size()
+print(90 in marks)     # True — contains check
+print(marks.index(88)) # find position — like indexOf()
+
+# Sorting
+marks.sort()           # sort ascending — modifies original
+marks.sort(reverse=True) # sort descending
+sorted_marks = sorted(marks) # returns new sorted list
+
+# Useful operations
+print(sum(marks))      # sum of all elements
+print(max(marks))      # maximum
+print(min(marks))      # minimum
+print(sum(marks)/len(marks))  # average</div>
+  <div class="annotation"><div class="ann-num">1</div><div>Python lists are dynamic — no fixed size, no type restriction. One list can hold integers, strings, and objects together. Much more flexible than Java arrays.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>sum()</code>, <code>max()</code>, <code>min()</code> are built-in functions — no need to import Collections like Java. Python includes these for free.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 4 — Functions</span>
+  <h3>def replaces public static returnType</h3>
+  <div class="grid2">
+    <div class="cell">
+      <div class="cell-label">Java method</div>
+      <div class="code-block" style="margin:0.5rem 0">public static double
+getAverage(int a, int b){
+    return (a + b) / 2.0;
+}</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Python function</div>
+      <div class="code-block" style="margin:0.5rem 0">def get_average(a, b):
+    return (a + b) / 2.0</div>
+    </div>
+  </div>
+  <div class="code-block"># Python functions — key differences from Java
+
+# Default parameters
+def greet(name, greeting="Hello"):
+    print(f"{greeting}, {name}!")
+
+greet("Yubhi")           # Hello, Yubhi!
+greet("Arun", "Hi")      # Hi, Arun!
+
+# Multiple return values — impossible in Java without OOP
+def get_stats(marks):
+    return min(marks), max(marks), sum(marks)/len(marks)
+
+low, high, avg = get_stats([85, 92, 78, 90])
+print(f"Min:{low} Max:{high} Avg:{avg}")</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>def</code> replaces <code>public static returnType</code>. No return type declaration — Python figures it out. No <code>static</code> needed — Python functions live at module level.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div>Python naming convention: <code>snake_case</code> for functions and variables — <code>get_average</code> not <code>getAverage</code>. Classes still use <code>PascalCase</code>. This is the opposite of Java's camelCase for functions.</div></div>
+  <div class="annotation"><div class="ann-num">3</div><div>Multiple return values — Python can return a tuple of values in one <code>return</code> statement. Java cannot do this without wrapping in an object.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-amber">Part 5 — OOP in Python</span>
+  <h3>Classes work the same — syntax is different</h3>
+  <div class="code-block">class Student:
+
+    def __init__(self, name, roll, marks):  # constructor
+        self.name = name        # self = this in Java
+        self.roll = roll
+        self.marks = marks
+
+    def get_average(self):
+        return sum(self.marks) / len(self.marks)
+
+    def get_grade(self):
+        avg = self.get_average()
+        if avg >= 90: return "A"
+        elif avg >= 75: return "B"
+        elif avg >= 60: return "C"
+        else: return "F"
+
+    def print_report(self):
+        print(f"Name  : {self.name}")
+        print(f"Roll  : {self.roll}")
+        print(f"Avg   : {self.get_average():.2f}%")
+        print(f"Grade : {self.get_grade()}")
+
+# Creating objects — no 'new' keyword in Python
+s1 = Student("Yubhi", 101, [92, 88, 95])
+s2 = Student("Arun",  102, [75, 80, 70])
+
+s1.print_report()
+s2.print_report()</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>__init__</code> is Python's constructor — double underscores on both sides. Called automatically when you create an object.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>self</code> is Python's <code>this</code>. Every instance method must take <code>self</code> as its first parameter — Python passes the object reference automatically when you call the method.</div></div>
+  <div class="annotation"><div class="ann-num">3</div><div>No <code>new</code> keyword — <code>Student("Yubhi", 101, [92, 88, 95])</code> creates an object directly. No <code>public</code>, <code>private</code>, <code>static</code> needed for basic usage.</div></div>
+  <div class="tip-box">💡 <strong>Notice:</strong> <code>self.marks</code> is a list — Python lets you pass a list directly as a constructor argument. No separate array type needed. This is Python's flexibility at work.</div>
+</div>
+
+<div class="card">
+  <span class="badge badge-blue">Part 6 — Setting up Python</span>
+  <h3>Your Python environment</h3>
+  <div class="code-block"># Check if Python is installed
+python --version
+# Should show Python 3.x.x
+
+# If not installed — download from python.org
+# During installation CHECK "Add Python to PATH"
+
+# Run a Python file
+python filename.py
+
+# Python interactive shell — type python in terminal
+# Useful for quick testing
+>>> 2 + 2
+4
+>>> "hello".upper()
+'HELLO'</div>
+  <div class="tip-box">💡 <strong>For AI/DS work</strong> — install <strong>Anaconda</strong> instead of plain Python. It comes with NumPy, Pandas, Jupyter Notebook, and 200+ data science libraries pre-installed. Download from anaconda.com. This is what data scientists use professionally.</div>
+</div>
+
+<button onclick="sendPrompt('I have read Python Lesson 1. Give me the exercises.')" style="margin-top:0.5rem;padding:10px 20px;font-size:14px;cursor:pointer;border-radius:var(--border-radius-md)">I have read this — give me the exercises ↗</button>

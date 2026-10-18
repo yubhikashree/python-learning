@@ -1,0 +1,181 @@
+
+<style>
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--border-radius-md);margin-bottom:10px}
+  .badge-teal{background:var(--color-background-success);color:var(--color-text-success)}
+  .badge-purple{background:#EEEDFE;color:#3C3489}
+  .badge-amber{background:var(--color-background-warning);color:var(--color-text-warning)}
+  .badge-red{background:var(--color-background-error);color:var(--color-text-error)}
+  .badge-blue{background:var(--color-background-info);color:var(--color-text-info)}
+  @media(prefers-color-scheme:dark){.badge-purple{background:#26215C;color:#AFA9EC}}
+  .code-block{background:var(--color-background-tertiary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1rem 1.25rem;font-family:var(--font-mono);font-size:13px;line-height:1.8;margin:0.75rem 0;overflow-x:auto;white-space:pre}
+  .annotation{display:flex;gap:10px;align-items:flex-start;margin:7px 0;font-size:13px;color:var(--color-text-secondary)}
+  .ann-num{min-width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0}
+  h3{font-size:16px;font-weight:500;margin:0 0 0.5rem}
+  p{font-size:14px;line-height:1.7;color:var(--color-text-secondary);margin:0 0 0.75rem}
+  code{font-family:var(--font-mono);font-size:12px;background:var(--color-background-tertiary);padding:1px 5px;border-radius:4px}
+  .highlight{color:var(--color-text-primary);font-weight:500}
+  .tip-box{background:var(--color-background-success);border-left:3px solid var(--color-border-success);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-success)}
+  .warn-box{background:var(--color-background-warning);border-left:3px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-warning)}
+  .rule-box{background:var(--color-background-error);border-left:3px solid var(--color-border-error);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0;font-size:13px;color:var(--color-text-error)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+  th{text-align:left;padding:7px 10px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;font-size:12px}
+  td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);font-size:12px}
+  td:first-child{font-family:var(--font-mono)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+  .cell{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem}
+  .cell-label{font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin-bottom:6px}
+</style>
+
+<div class="card">
+  <span class="badge badge-teal">Python Lesson 2 — NumPy</span>
+  <h3>NumPy — Numerical computing at C speed</h3>
+  <p>NumPy is the foundation of all data science and ML in Python. Every library you'll use — Pandas, Scikit-learn, TensorFlow — is built on top of it. Master NumPy and everything else becomes easier.</p>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 1 — Creating NumPy arrays</span>
+  <h3>ndarray — the core data structure</h3>
+  <div class="code-block">import numpy as np
+
+# From a Python list
+marks = np.array([92, 88, 95, 78, 85])
+print(marks)          # [92 88 95 78 85]
+print(type(marks))    # <class 'numpy.ndarray'>
+print(marks.dtype)    # int64 — all elements same type
+print(marks.shape)    # (5,) — 5 elements, 1 dimension
+print(marks.size)     # 5 — total elements
+
+# Creating arrays without data
+zeros = np.zeros(5)           # [0. 0. 0. 0. 0.]
+ones  = np.ones(5)            # [1. 1. 1. 1. 1.]
+empty = np.empty(5)           # uninitialized values
+rang  = np.arange(0, 10, 2)  # [0 2 4 6 8] like range()
+lin   = np.linspace(0, 1, 5) # [0. 0.25 0.5 0.75 1.]
+
+# 2D array — matrix
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
+print(matrix.shape)   # (3, 3) — 3 rows, 3 columns
+print(matrix[1][2])   # 6 — row 1, column 2
+print(matrix[1, 2])   # 6 — same thing, NumPy style</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>ndarray</code> — N-dimensional array. Unlike Python lists, every element must be the same type. This is what enables C-speed operations.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>.shape</code> returns dimensions as a tuple. <code>(5,)</code> = 1D with 5 elements. <code>(3, 3)</code> = 2D with 3 rows and 3 columns. Essential for ML — models require specific input shapes.</div></div>
+  <div class="annotation"><div class="ann-num">3</div><div><code>np.arange(0, 10, 2)</code> = start at 0, stop before 10, step by 2. Identical logic to <code>range()</code> — same exclusive upper bound you already know.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 2 — Vectorized operations</span>
+  <h3>No loops needed — operations apply to entire array</h3>
+  <div class="code-block">import numpy as np
+
+marks = np.array([92, 88, 95, 78, 85])
+
+# Arithmetic — applied to every element
+print(marks + 5)      # [97 93 100 83 90]
+print(marks * 2)      # [184 176 190 156 170]
+print(marks / 100)    # [0.92 0.88 0.95 0.78 0.85]
+print(marks ** 2)     # [8464 7744 9025 6084 7225]
+
+# Comparison — returns boolean array
+print(marks > 85)     # [True  True  True False False]
+print(marks == 95)    # [False False True  False False]
+
+# Boolean indexing — filter elements
+passed = marks[marks >= 85]
+print(passed)         # [92 88 95 85]
+
+# Operations between two arrays
+maths   = np.array([92, 88, 95])
+physics = np.array([85, 90, 78])
+total   = maths + physics
+print(total)          # [177 178 173]
+avg     = (maths + physics) / 2
+print(avg)            # [88.5 89.  86.5]</div>
+  <div class="annotation"><div class="ann-num">1</div><div><span class="highlight">Boolean indexing</span> — <code>marks[marks >= 85]</code> filters an array in one line. In Java this would need a loop and a new ArrayList. This pattern is used constantly in data analysis.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div>Operations between two arrays work element-by-element — <code>maths + physics</code> adds index 0 with index 0, index 1 with index 1. Both arrays must have the same shape.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 3 — Statistical operations</span>
+  <h3>Instant statistics on entire arrays</h3>
+  <div class="code-block">import numpy as np
+
+marks = np.array([92, 88, 95, 78, 85, 91, 73, 89])
+
+# Basic stats
+print(np.sum(marks))       # 691
+print(np.mean(marks))      # 86.375
+print(np.median(marks))    # 88.5
+print(np.std(marks))       # 6.97 — standard deviation
+print(np.var(marks))       # 48.6 — variance
+print(np.max(marks))       # 95
+print(np.min(marks))       # 73
+print(np.argmax(marks))    # 2 — index of maximum
+print(np.argmin(marks))    # 6 — index of minimum
+
+# Sorting
+print(np.sort(marks))      # [73 78 85 88 89 91 92 95]
+print(np.argsort(marks))   # indices that would sort the array
+
+# 2D statistics
+scores = np.array([[92, 88, 95],
+                   [78, 85, 91],
+                   [73, 89, 80]])
+
+print(np.mean(scores))           # mean of ALL elements
+print(np.mean(scores, axis=0))   # mean of each COLUMN
+print(np.mean(scores, axis=1))   # mean of each ROW</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>np.argmax()</code> returns the <span class="highlight">index</span> of the maximum value — not the value itself. Use it to find which student has the highest marks: <code>names[np.argmax(marks)]</code>.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>axis=0</code> operates column-by-column (downward). <code>axis=1</code> operates row-by-row (across). This distinction is critical in ML when working with datasets where rows are samples and columns are features.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-purple">Part 4 — Slicing and reshaping</span>
+  <h3>Extracting and transforming data</h3>
+  <div class="code-block">import numpy as np
+
+marks = np.array([92, 88, 95, 78, 85, 91, 73, 89])
+
+# Slicing — same as Python lists
+print(marks[2:5])     # [95 78 85]
+print(marks[:3])      # [92 88 95]
+print(marks[-3:])     # [73 89] wait — last 3: [91 73 89]
+print(marks[::2])     # every 2nd: [92 95 85 73]
+
+# 2D slicing
+matrix = np.array([[1,  2,  3,  4],
+                   [5,  6,  7,  8],
+                   [9, 10, 11, 12]])
+
+print(matrix[0, :])    # first row:   [1  2  3  4]
+print(matrix[:, 0])    # first col:   [1  5  9]
+print(matrix[0:2, 1:3])# submatrix:  [[2 3][6 7]]
+
+# Reshaping
+arr = np.arange(12)              # [0 1 2 3 4 5 6 7 8 9 10 11]
+matrix = arr.reshape(3, 4)       # 3 rows, 4 columns
+print(matrix)
+flat = matrix.flatten()          # back to 1D
+print(flat)</div>
+  <div class="annotation"><div class="ann-num">1</div><div><code>reshape(3, 4)</code> — changes the shape without changing the data. 12 elements → 3×4 matrix. Total elements must stay the same. Used constantly in ML to prepare data for models.</div></div>
+  <div class="annotation"><div class="ann-num">2</div><div><code>matrix[:, 0]</code> — colon means "all rows", 0 means "column 0". Extracting a full column is one line in NumPy — in Java it would need a loop.</div></div>
+</div>
+
+<div class="card">
+  <span class="badge badge-amber">Part 5 — NumPy vs Python list</span>
+  <h3>When to use which</h3>
+  <table>
+    <tr><th>Feature</th><th>Python List</th><th>NumPy Array</th></tr>
+    <tr><td>Element types</td><td>Mixed allowed</td><td>Same type only</td></tr>
+    <tr><td>Speed</td><td>Slower</td><td>10–100x faster</td></tr>
+    <tr><td>Math operations</td><td>Need loops</td><td>Vectorized — no loops</td></tr>
+    <tr><td>Memory</td><td>More overhead</td><td>Compact and efficient</td></tr>
+    <tr><td>Built-in stats</td><td>Limited</td><td>mean, std, var, etc.</td></tr>
+    <tr><td>Use when</td><td>General data, mixed types</td><td>Numerical computation, ML</td></tr>
+  </table>
+  <div class="tip-box">💡 <strong>Rule of thumb:</strong> Storing names, categories, mixed data → Python list. Doing any numerical computation, statistics, or ML → NumPy array. In real data science you use both constantly — Pandas combines them intelligently.</div>
+</div>
+
+<button onclick="sendPrompt('I have read Python Lesson 2. Give me the exercises.')" style="margin-top:0.5rem;padding:10px 20px;font-size:14px;cursor:pointer;border-radius:var(--border-radius-md)">I have read this — give me the exercises ↗</button>
